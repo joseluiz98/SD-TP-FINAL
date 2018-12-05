@@ -1,4 +1,5 @@
 import pika
+import os
 import sys
 
 connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
@@ -23,7 +24,10 @@ for binding_key in binding_keys:
 print(' [*] Waiting for logs. To exit press CTRL+C')
 
 def callback(ch, method, properties, body):
-    print(" [x] %r:%r" % (method.routing_key, body))
+    file_name = "nip_receive" + str(os.getpid()) + ".log"
+    with open(file_name, "a") as arquivo:
+        arquivo.write("{}\n".format(body))  # Python 2.x
+        print(" [x] log recebido e salvo no arquivo: %r" % file_name)
 
 channel.basic_consume(callback,
                       queue=queue_name,

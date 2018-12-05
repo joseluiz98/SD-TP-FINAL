@@ -1,0 +1,17 @@
+Para rodar o produtor, basta:
+	sudo python producer_X.py
+
+Onde X pode ser "so" para sistema operacional, "hw" para informação de hardware ou "nw" para info de rede.
+
+Para rodar o cosumidor, basta:
+	sudo python consumer.py "X"
+
+Onde X pode ser # para se inscrever em todos os tópicos, ou apenas insira os tópicos desejados como parâmetros string separadamente. Existem estes tópicos:
+	so
+	nw
+	hw
+
+Por exemplo, se quero receber informações de hardware e rede, insiro:
+	sudo python consumer.py "hw" "nw"
+
+Quaisquer dúvidas, consulte a documentação da API em https://www.rabbitmq.com/tutorials/tutorial-five-python.html
